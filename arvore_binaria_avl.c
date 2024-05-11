@@ -28,6 +28,22 @@ No* novoNo(int x){
     return novo;
 }
 
+/*Retorna o maior dentre dois valores
+  a, b -> altura de dois nós da árvore*/
+
+short maior(short a, short b){
+    return (a > b)? a: b;
+}
+
+/*Retorna a altura de um nó ou -1 caso ele seja null*/
+
+short alturaDoNo(No *no){
+    if(no == NULL)
+        return -1;
+    else
+        return no->altura;
+}
+
 int main(){
 
 
