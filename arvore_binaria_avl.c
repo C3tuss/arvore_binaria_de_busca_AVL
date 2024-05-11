@@ -85,6 +85,20 @@ No* rotacaoDireita(No* r){
     return y;
 }
 
+// função rotação direita-esquerda
+
+No* rotacaoDireitaEsquerda(No* r){
+    r->direita = rotacaoDireita(r->direita);
+    return rotacaoEsquerda(r);
+}
+
+// função rotação esquerda-direita
+
+No* rotacaoEsquerdaDireita(No* r){
+    r->esquerda = rotacaoEsquerda(r->esquerda);
+    return rotacaoDireita(r);
+}
+
 int main(){
 
 
