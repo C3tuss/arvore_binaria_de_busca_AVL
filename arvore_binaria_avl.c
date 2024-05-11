@@ -44,6 +44,15 @@ short alturaDoNo(No *no){
         return no->altura;
 }
 
+/*Calcua e retorna o fator de balanceamento de um nó*/
+
+short fatorDeBalanceamento(No *no){
+    if(no)
+        return (alturaDoNo(no->esquerda)) - (alturaDoNo(no->direita));
+    else
+        return 0;
+}
+
 int main(){
 
 
