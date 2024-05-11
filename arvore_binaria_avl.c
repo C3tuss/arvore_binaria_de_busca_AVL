@@ -53,6 +53,22 @@ short fatorDeBalanceamento(No *no){
         return 0;
 }
 
+// função pra a rotação a esquerda
+
+No* rotacaoEsquerda(No* r){
+    No *y, *f;
+
+    y = r->direita;
+    f = y->esquerda;
+
+    y->direita = r;
+    r->direita = f;
+
+    r->altura = maior(alturaDoNo(r->esquerda), alturaDoNo(r->direita)) + 1;
+    y->altura = maior(alturaDoNo(y->esquerda), alturaDoNo(y->direita)) + 1;
+}
+
+
 int main(){
 
 
