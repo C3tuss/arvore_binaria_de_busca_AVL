@@ -61,13 +61,29 @@ No* rotacaoEsquerda(No* r){
     y = r->direita;
     f = y->esquerda;
 
-    y->direita = r;
+    y->esquerda = r;
     r->direita = f;
 
     r->altura = maior(alturaDoNo(r->esquerda), alturaDoNo(r->direita)) + 1;
     y->altura = maior(alturaDoNo(y->esquerda), alturaDoNo(y->direita)) + 1;
 }
 
+// função para a rotação a direita
+
+No* rotacaoDireita(No* r){
+    No *y, *f;
+
+    y = r->esquerda;
+    f = y->direita;
+
+    y->direita = r;
+    y->esquerda = f;
+    
+    r->altura = maior(alturaDoNo(r->esquerda), alturaDoNo(r->direita)) + 1;
+    y->altura = maior(alturaDoNo(y->esquerda), alturaDoNo(y->direita)) + 1;
+
+    return y;
+}
 
 int main(){
 
