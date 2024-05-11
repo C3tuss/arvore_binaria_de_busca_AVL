@@ -77,7 +77,7 @@ No* rotacaoDireita(No* r){
     f = y->direita;
 
     y->direita = r;
-    y->esquerda = f;
+    r->esquerda = f;
     
     r->altura = maior(alturaDoNo(r->esquerda), alturaDoNo(r->direita)) + 1;
     y->altura = maior(alturaDoNo(y->esquerda), alturaDoNo(y->direita)) + 1;
