@@ -151,6 +151,56 @@ No* balancear(No* raiz){
     return raiz;
 }
 
+No* remover(No* raiz, int chave){
+    if(raiz == NULL){
+        printf("Valor não encontrado!\n");
+        return NULL;
+    }else{ // Procura o nó a remover
+        if(raiz->valor == chave){
+            // remove nós folhas (nós sem filhos)
+            if(raiz->esquerda == NULL && raiz->direita == NULL){
+                free(raiz);
+                printf("Elemento folha removido: %d!\n", chave);
+
+            }else{
+                if(raiz->esquerda != NULL && raiz->direita != NULL){
+                    No* aux = raiz->esquerda;
+                    while(aux->direita != NULL)
+                        aux = aux->direita;
+
+                    raiz->valor = aux->valor;
+                    aux->valor = chave;
+                    printf("Elmento trocado: %d!\n", chave);
+                    raiz->esquerda = remover(raiz->esquerda, chave);
+                    return raiz;
+                }else{
+                    //remover nós que possuem apenas 1 filho
+                    No* aux;
+                    if(raiz->esquerda != NULL)
+                        aux = raiz->esquerda;
+                    else
+                        aux = raiz->direita;
+                    free(raiz);
+                    printf("Elemento com 1 filho removido: %d!\n", chave);
+                    return aux;
+                }
+            }
+        }else{
+            if(chave < raiz->esquerda)
+                remover(raiz->esquerda, chave);
+            else
+                remover(raiz->direita, chave);
+        }
+        // Recalculae a altura de todos os nós entre a raiz e o novo nó inserido
+        raiz->altura = maior(alturaDoNo(raiz->esquerda), alturaDoNo(raiz->direita)) + 1;
+
+        //verifica a necessidade de rebalancear a árvore
+        raiz = balancear(raiz);
+        
+        return raiz;
+    }
+}
+
 int main(){
 
 
