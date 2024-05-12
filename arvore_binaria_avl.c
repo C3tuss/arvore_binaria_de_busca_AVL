@@ -126,6 +126,31 @@ No* inserir(No* raiz, int x){
     return raiz;
 }
 
+/*Função para realizar o balanceamento da árvore aṕos uma inserção ou remoção
+Recebe o nó que está desbalanceado e retorna a nova raiz após o balanceamento*/
+
+No* balancear(No* raiz){
+    short fb = fatorDeBalanceamento(raiz);
+
+    // Rotação à esquerda
+    if(fb < -1 && fatorDeBalanceamento(raiz->direita) <= 0)
+        raiz = rotacaoEsquerda(raiz);
+
+    // Rotação à direita
+    if(fb > 1 && fatorDeBalanceamento(raiz->esquerda) >= 0)
+        raiz = rotacaoDireita(raiz);
+
+    // Rotação esquerda-direita
+    if(fb > 1 && fatorDeBalanceamento(raiz->esquerda) < 0)
+        raiz = rotacaoEsquerdaDireita(raiz);
+
+    // Rotação direita-esquerda
+    if(fb < -1 && fatorDeBalanceamento(raiz->direita) > 0)
+        raiz = rotacaoDireitaEsquerda(raiz->direita);
+    
+    return raiz;
+}
+
 int main(){
 
 
