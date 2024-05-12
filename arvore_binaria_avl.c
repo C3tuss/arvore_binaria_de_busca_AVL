@@ -99,6 +99,33 @@ No* rotacaoEsquerdaDireita(No* r){
     return rotacaoDireita(r);
 }
 
+/*
+Insere um novo nó na árvore
+raiz -> raiz da árvore
+x -> valor a ser inserido
+retorna: endereço do novo nó ou nova raiz após o balanceamento
+*/
+No* inserir(No* raiz, int x){
+    if(raiz == NULL) // árvore vazia
+        return novoNo(x);
+    else{ // inserção será à esquerda ou à direita
+        if(x < raiz->valor)
+            raiz->esquerda = inserir(raiz->esquerda, x);
+        else if(x > raiz->direita)
+            raiz->direita = inserir(raiz->direita, x);
+        else
+            printf("\nInserção não realizada!\nO elemento %d já existe!\n", x);
+    }
+
+    //Recalcular a altura de todos os nós entre a raiz e o novo nó inserido
+    raiz->altura = maior(alturaDoNo(raiz->esquerda), alturaDoNo(raiz->direita)) + 1;
+
+    //verifica a necessidade rebalancear a árvore
+    raiz = balancear(raiz);
+
+    return raiz;
+}
+
 int main(){
 
 
