@@ -201,6 +201,20 @@ No* remover(No* raiz, int chave){
     }
 }
 
+void imprimir(No* raiz,int nivel){
+    int i;
+    if(raiz){
+        imprimir(raiz->direita, nivel + 1);
+        printf("\n\n");
+
+        for(i = 0; i < nivel; i++)
+            printf("\t");
+
+        printf("%d", raiz->valor);
+        imprimir(raiz->esquerda, nivel + 1);
+    }
+}
+
 int main(){
 
 
